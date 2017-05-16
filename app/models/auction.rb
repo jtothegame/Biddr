@@ -8,6 +8,9 @@ class Auction < ApplicationRecord
 
   validates :title, :description, :ends_on, :reserve, presence: true
 
+  before_create do
+    self.current_price = 1
+  end
 
   def favorited_by?(user)
     favorites.exists?(user: user)
@@ -24,10 +27,9 @@ class Auction < ApplicationRecord
     state :draft, initial: true
     state :published, :canceled, :reserve_met, :reserve_not_met, :won
 
-    event :published do
+    event :publish do
       transitions from: :draft, to: :published
     end
-
 
     event :reserve_not_met do
       transitions from: :published, to: :reserve_not_met

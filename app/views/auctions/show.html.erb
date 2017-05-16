@@ -9,6 +9,10 @@
   <p>Reserve Price Not Met</p>
   <% end %>
 
+  <% if @auction.may_publish? %>
+  <%= link_to 'Publish', auction_publish_index_path(@auction), method: :post %>
+ <% end %>
+
 <hr>
 
 <%= simple_form_for [@auction, @bid] do |f| %>
@@ -30,7 +34,7 @@
 <% end %>
 
 <h4>Previous Bids</h4>
-<% @auction.bids.each do |bid| %>
+<% @auction.bids.order('created_at desc').each do |bid| %>
 <div class="well" style="color:white; font-size: 17px; background-color: teal;">
   <p>$<%= bid.price %> at <%= bid.created_at %> by <%= bid.user.first_name %></p>
 </div>

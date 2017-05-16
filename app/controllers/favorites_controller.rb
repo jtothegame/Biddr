@@ -10,10 +10,6 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    # if cannot? :favorite, @auction
-    #   redirect_to auction_path(@auction), alert: 'Cannot favorite your own auction'
-    #   return
-    # end
 
     favorite = Favorite.new(user: current_user, auction: @auction)
 
@@ -31,7 +27,6 @@ class FavoritesController < ApplicationController
       @favorite.destroy ? {notice: 'UnFavorite?'} : {alert: @favorite.errors.full_messages.join(', ') }
     end
   end
-
 
   private
 

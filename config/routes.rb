@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :auctions, only: [:index, :show, :create, :new] do
     resources :bids, only: [:create, :show]
     resources :favorites, only: [:create, :show, :destroy]
+    resources :publish, only: [:create]
   end
 
   resources :users, only: [:new, :create] do
@@ -13,6 +14,8 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create] do
     delete :destroy, on: :collection
   end
+
+
 
   root 'welcome#index'
 end
