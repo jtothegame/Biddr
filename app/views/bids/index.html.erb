@@ -1,0 +1,11 @@
+<h1>Bids Placed By: <%= @user&.first_name %></h1>
+
+<ul style="list-style: none; padding: 0px;">
+
+<% @auctions.each do |a| %>
+  <div class="well" style="font-size: 20px;">
+  <li><%= link_to a.auction.title, "/auctions/#{a.auction.id}" %></li>
+  </div>
+<% end %>
+
+</ul>

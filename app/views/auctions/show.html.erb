@@ -1,0 +1,37 @@
+<h1 style="font-family: 'Times New Roman'; color: Red;"><%= @auction.title %></h1>
+<p style="font-size: 18px;"><strong><%= @auction.description %></strong></p>
+<p><strong>End Date: <%= @auction.ends_on %></strong></p>
+<p><em><strong>Price: $<%= @auction.reserve %></strong></em></p>
+
+<% if @auction.reserve == @auction.bids.maximum(:price)%>
+  <p><strong>Auction Reserve Price:</strong> <%= @auction.reserve %></p>
+  <% else %>
+  <p>Reserve Price Not Met</p>
+  <% end %>
+
+<hr>
+
+<%= simple_form_for [@auction, @bid] do |f| %>
+  <div>
+    <%= f.input_field :price %>
+    <%= f.submit 'Bid', class:'btn btn-success' %>
+  </div>
+
+<% end %>
+
+<% if @auction.favorited_by?(current_user) %>
+  <%= link_to user_favorite_path(@auction.favorite_for(current_user)), method: :delete do %>
+    <i class='glyphicon glyphicon-eye-close'>UnWatch</i>
+  <% end %>
+<% else %>
+  <%= link_to auction_favorites_path(@auction), method: :post do %>
+    <i class='glyphicon glyphicon-eye-open'>Watch</i>
+  <% end %>
+<% end %>
+
+<h4>Previous Bids</h4>
+<% @auction.bids.each do |bid| %>
+<div class="well" style="color:white; font-size: 17px; background-color: teal;">
+  <p>$<%= bid.price %> at <%= bid.created_at %> by <%= bid.user.first_name %></p>
+</div>
+<% end %>

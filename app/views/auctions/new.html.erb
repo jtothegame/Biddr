@@ -1,0 +1,21 @@
+<%= @auction.errors.full_messages.join(', ') %>
+<%= form_for @auction do |f| %>
+  <div class='form-group'>
+    <%= f.label :title %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div><br>
+  <div class='form-group'>
+    <%= f.label :description %>
+    <%= f.text_area :description, class: 'form-control' %>
+  </div><br>
+  <div class='form-group'>
+    <%= f.label :ends_on %>
+    <%= f.text_field :ends_on, type: 'date'  %>
+  </div><br>
+  <div class='form-group'>
+    <%= f.label :reserve %>
+    <%= f.text_field :reserve, class: 'form-control' %>
+  </div><br>
+
+  <%= f.submit 'Create Auction', class: 'btn btn-success' %>
+<% end %>

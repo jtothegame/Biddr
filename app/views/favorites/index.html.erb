@@ -1,0 +1,11 @@
+<h1>Auctions Watched By: <%= @user&.first_name %></h1>
+
+<ul style="list-style: none; padding: 0px;">
+
+  <% @auctions.each do |auction| %>
+  <div class="well" style="font-size: 20px;">
+    <li><%= link_to auction.title, auction %></li>
+  </div>
+  <% end %>
+
+</ul>

@@ -1,0 +1,20 @@
+// Place all the styles related to the welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.welcome {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('giphy.gif');
+  background-size: cover;
+  text-align: center;
+  font-family: "helvetica";
+  font-size: 50px;
+  color: white;
+  position: absolute; top: 0; left: 0;
+}
+
+.welcome > h1 {
+  position: absolute; top: 350px; left: 550px;
+  font-size: 50px;
+  font-family: "Lucinda"
+}
