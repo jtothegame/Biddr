@@ -13,4 +13,6 @@ RSpec.describe BidsController, type: :controller do
       end
     end
   end
+
+  
 end

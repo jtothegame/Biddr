@@ -10,7 +10,7 @@ class Bid < ApplicationRecord
     if price.present? &&
         auction.present? &&
         price <= auction.current_price
-      errors.add(:price, "must be greater than the auction's current price")
+      errors.add(:price, "of bid must be greater than the auction's current bid! 😡")
     end
   end
 
